@@ -162,9 +162,8 @@ pair<bool, int> adds_up_recursive(const vector< set<int>>& candidate_sets, const
         return make_pair(false, 0);
     
     bool match_found = false;
-    for (auto value : candidate_sets.at(index)) // Köra baklänges för optimization?
+    for (auto value : candidate_sets.at(index))
     {
-        // cout << "Passed_value: " << passed_value << ", value: " << value << endl;
         if (passed_value + value > target)
             return make_pair(false, 0);
         else if (index == candidate_sets.size()-1)
@@ -172,11 +171,9 @@ pair<bool, int> adds_up_recursive(const vector< set<int>>& candidate_sets, const
             if (passed_value + value == target)
                 return make_pair(true, 0);
             
-            // passed_value + value < target IT IS KNOWN
             int smallest_factor = find_smallest_factor(target-(passed_value + value), key_zero_candidates);
             if (smallest_factor != 0)
             {
-                // cout << "Found match! Smallest_factor: " << smallest_factor << endl;
                 match_found = true;
                 if (extra_factor == 0 || smallest_factor < extra_factor)
                     extra_factor = smallest_factor;
